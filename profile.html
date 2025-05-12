@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OKAMI Dimsum - Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+    <!--header-->
+    <header id="mainHeader">
+        <div class="nav-left">
+            <a href="home.html" class="nav-link">Home</a>
+            <a href="menu.html" class="nav-link">Menu</a>
+        </div>
+
+        <div class="profile-container">
+            <img src="logo.jpg" alt="Profile" class="profile-img">
+        </div>
+
+        <div class="nav-right">
+            <a href="profile.html" class="nav-link active">Profile</a>
+            <a href="location.html" class="nav-link">Location</a>
+            <button class="login-btn" id="loginBtn">Login</button>
+        </div>
+    </header><br><br>
+
+    <!-- Login -->
+    <div class="auth-modal" id="authModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Login</h2>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            
+            <!-- Login Form -->
+            <form class="auth-form" id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="submit-btn">Sign In</button>
+                <div class="form-switch">
+                    Don't have an account? 
+                    <button type="button" class="form-switch-btn" id="switchToSignup">Sign Up</button>
+                </div>
+            </form>
+            
+            <!-- Signup Form -->
+            <form class="auth-form" id="signupForm" style="display: none;">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" placeholder="Create a password" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupConfirm">Confirm Password</label>
+                    <input type="password" id="signupConfirm" placeholder="Confirm your password" required>
+                </div>
+                <button type="submit" class="submit-btn">Sign Up</button>
+                <div class="form-switch">
+                    Already have an account? 
+                    <button type="button" class="form-switch-btn" id="switchToLogin">Sign In</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+    <section class="profile-section">
+        <div class="left-side">
+            <div class="rotating-image" id="rotatingImage"></div>
+            <div class="logo-vertical">OKAMI</div>
+        </div>
+        <div class="right-side">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            
+            <div class="profile-content" id="profileContent">
+                <h1>Our Profile</h1>
+                <p><span class="highlight">Dimsum</span>, berasal dari wilayah selatan Tiongkok, terutama Guangdong (Kanton). Tradisi makan dimsum berawal dari kebiasaan para pedagang dan pelancong yang beristirahat di rumah teh di sepanjang Jalur Sutra. Rumah teh ini mulai menyajikan makanan kecil untuk Menemani minum teh, yang kemudian berkembang menjadi budaya “yum cha”. Dimsum bukan sekadar makanan, tapi juga simbol kebersamaan dan tradisi sosial dalam budaya Tiongkok. Aktivitas “yum cha” yang menyertainya telah menjadi ritual penting dalam keluarga dan komunitas.</p>
+                <p>Menjadi Pelopor di Kalangan dimsum daerah Purwokerto Okami Dimsum kedai dimsum yang baru berdiri pada tahun 2024, tapi sebelum itu kami aktiv menjual dimsum dengan metode "Open Pre-order" yang Dahulu kala Bernama "Ttitik Dimsum" Hingga membuka Kedai berubah Nama menjadi <span class="highlight">Okami Dimsum</span> Kami menyediakan lebih dari 10 Variant dimsum yang bisa dinikmati setiap hari, kami juga mengikuti perkembangan jaman ini Okami Dimsum juga menyediakan menu dengan Varian "Sauce" yang ga kalah enaknya dengan variant biasa.</p>
+                <p>Okami Dimsum bisa disajikan dengan Sauce Chili oil dan Bangkok Khas Okami agar lebih nikmat, Dimsum disajikan daloam keadaan <span class="highlight">hangat</span> membuat dimsum terasa harum dan kenyal.</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="profile.js"></script>
+</body>
+</html>

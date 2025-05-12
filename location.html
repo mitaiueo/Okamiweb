@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OKAMI - Location</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="location.css">
+</head>
+<body>
+
+    <!--header-->
+    <header id="mainHeader">
+        <div class="nav-left">
+            <a href="home.html" class="nav-link">Home</a>
+            <a href="menu.html" class="nav-link">Menu</a>
+        </div>
+
+        <div class="profile-container">
+            <img src="logo.jpg" alt="Profile" class="profile-img">
+        </div>
+
+        <div class="nav-right">
+            <a href="profile.html" class="nav-link">Profile</a>
+            <a href="location.html" class="nav-link active">Location</a>
+            <button class="login-btn" id="loginBtn">Login</button>
+        </div>
+    </header><br><br>
+
+    <!-- Login -->
+    <div class="auth-modal" id="authModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Login</h2>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            
+            <!-- Login Form -->
+            <form class="auth-form" id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="submit-btn">Sign In</button>
+                <div class="form-switch">
+                    Don't have an account? 
+                    <button type="button" class="form-switch-btn" id="switchToSignup">Sign Up</button>
+                </div>
+            </form>
+            
+            <!-- Signup Form -->
+            <form class="auth-form" id="signupForm" style="display: none;">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" placeholder="Create a password" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupConfirm">Confirm Password</label>
+                    <input type="password" id="signupConfirm" placeholder="Confirm your password" required>
+                </div>
+                <button type="submit" class="submit-btn">Sign Up</button>
+                <div class="form-switch">
+                    Already have an account? 
+                    <button type="button" class="form-switch-btn" id="switchToLogin">Sign In</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Location Section -->
+    <section class="location-section">
+        <div class="location-container">
+            <h2 class="location-title">Kunjungi lokasi kami dibawah ini</h2>
+            <p class="location-subtitle">Datang ke Okami Dimsum dan rasakan kelezatannya!</p>
+            
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.3412129709523!2d109.25312667501453!3d-7.427440273167092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e655f006d356ced%3A0x379bf52c90fd0af4!2sOKAMI%20DIMSUM!5e0!3m2!1sen!2sid!4v1746685254668!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+            
+            <button class="location-button" id="locationBtn">lebih detail</button>
+            
+            <div class="location-details" id="locationDetails">
+                <h3>OKAMI Dimsum Restaurant</h3>
+                <p><i class="fas fa-map-marker-alt"></i> H7F4+27G, Jl. Kaliputih, Purwokerto Wetan, Kec. Purwokerto Tim., Kabupaten Banyumas, Jawa Tengah 53111</p>
+                <p><i class="fas fa-phone"></i> +62 896-3044-3917</p>
+                <p><i class="fas fa-clock"></i> Open Daily: 10:00 AM - 10:00 PM</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Reviews Section -->
+    <section class="reviews-section">
+        <div class="reviews-container">
+            <h2 class="reviews-title">Apa kata mereka?</h2>
+            
+            <div class="reviews-grid" id="reviewsGrid">
+                <!-- Review 1 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <img src="mamarajwa.jpg" alt="Customer" class="review-avatar">
+                        <div>
+                            <h4 class="review-name">@yulinarryanti</h4>
+                            <div class="review-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="review-text">Dimsumnya gemoy gemoy, rasanya ngga amis dan teksturnya lembut buat mentai dan tar tar nya enak!!</p>
+                </div>
+                
+                <!-- Review 2 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <img src="rajwa.jpg" alt="Customer" class="review-avatar">
+                        <div>
+                            <h4 class="review-name">@rajwasym</h4>
+                            <div class="review-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="review-text">Rasanya enak & mentainya perfect banget terus chili oilnya ENAK pake banget</p>
+                </div>
+                
+                <!-- Review 3 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <img src="" alt="Customer" class="review-avatar">
+                        <div>
+                            <h4 class="review-name">@khvei_</h4>
+                            <div class="review-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="review-text">sukaaaa bangettt, dimsum favorit dari yang lain, rasanya super duper enakkk terus ga amis sukakk</p>
+                </div>
+                
+                <!-- Review 4 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <img src="mita.jpg" alt="Customer" class="review-avatar">
+                        <div>
+                            <h4 class="review-name">@luvleyy.ta</h4>
+                            <div class="review-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="review-text">enakkk bangett, sangat sangat enak, apalagi mentai nya, enakk</p>
+                </div>
+                
+                <!-- Review 5 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <img src="lulu.jpg" alt="Customer" class="review-avatar">
+                        <div>
+                            <h4 class="review-name">@luuamardya_</h4>
+                            <div class="review-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="review-text">Dimsumnya enakk, gemoy gemoy rasanya ayam bangat, ga amis variant rasanya banyak, menu saucenya enak dan creamy!</p>
+                </div>
+                
+                <!-- Review 6 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <img src="" alt="Customer" class="review-avatar">
+                        <div>
+                            <h4 class="review-name">@ndvlyn</h4>
+                            <div class="review-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="review-text">Dimsumnya enak, sauce mnetai dan tar tarnya creamy bangat!, dimsum full daging, dan bisa pesen untuk rame rame</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="location.js"></script>
+</body>
+</html>

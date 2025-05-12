@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pembayaran QRIS - Checkout</title>
+  <style>
+    :root {
+      --primary: #A31D1D;
+      --success: #7D0A0A;
+      --warning: #f59e0b;
+      --danger: #;
+      --dark: #1e293b;
+      --light: #f8fafc;
+      --gray: #94a3b8;
+      --border-radius: 0.5rem;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+    
+    body {
+      background-color: #f0f5ff;
+      color: var(--dark);
+      line-height: 1.5;
+    }
+    
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+    
+    header {
+      padding: 1rem 0;
+      margin-bottom: 2rem;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .checkout-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    @media (min-width: 768px) {
+      .checkout-container {
+        grid-template-columns: 3fr 2fr;
+      }
+    }
+    
+    .card {
+      background-color: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .card-title .icon {
+      color: var(--primary);
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    
+    .delivery-options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    
+    @media (min-width: 640px) {
+      .delivery-options {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    .delivery-option {
+      border: 2px solid #e2e8f0;
+      border-radius: var(--border-radius);
+      padding: 1rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .delivery-option:hover {
+      border-color: #cbd5e1;
+    }
+    
+    .delivery-option.selected {
+      border-color: var(--primary);
+      background-color: #eff6ff;
+    }
+    
+    .delivery-option-title {
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .delivery-option-icon {
+      width: 24px;
+      height: 24px;
+      color: var(--primary);
+    }
+    
+    .delivery-option-description {
+      font-size: 0.875rem;
+      color: var(--gray);
+      margin-top: 0.5rem;
+    }
+    
+    .qris-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    
+    .qris-image {
+      width: 100%;
+      max-width: 240px;
+      height: auto;
+      margin: 1rem 0;
+    }
+    
+    .timer {
+      font-size: 0.875rem;
+      color: var(--danger);
+      margin: 1rem 0;
+      text-align: center;
+    }
+    
+    .payment-instructions {
+      font-size: 0.875rem;
+      margin-top: 1rem;
+      list-style-position: inside;
+      padding-left: 1rem;
+    }
+    
+    .payment-instructions li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .order-summary-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+      font-size: 0.875rem;
+    }
+    
+    .order-summary-item.total {
+      font-weight: 700;
+      font-size: 1rem;
+      border-top: 1px solid #e2e8f0;
+      margin-top: 1rem;
+      padding-top: 1rem;
+    }
+    
+    .button {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: var(--border-radius);
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+    }
+    
+    .button:hover {
+      background-color: #1d4ed8;
+    }
+    
+    .button.outline {
+      background-color: transparent;
+      color: var(--primary);
+      border: 1px solid var(--primary);
+    }
+    
+    .button.outline:hover {
+      background-color: #eff6ff;
+    }
+    
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background-color: #dbeafe;
+      color: var(--primary);
+    }
+    
+    .order-items {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .order-item {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .order-item-image {
+      width: 64px;
+      height: 64px;
+      object-fit: cover;
+      border-radius: 0.25rem;
+      background-color: #f1f5f9;
+    }
+    
+    .order-item-info {
+      flex: 1;
+    }
+    
+    .order-item-title {
+      font-weight: 600;
+    }
+    
+    .order-item-price {
+      font-size: 0.875rem;
+      color: var(--gray);
+    }
+
+    .help-text {
+      font-size: 0.75rem;
+      color: var(--gray);
+      margin-top: 0.5rem;
+    }
+
+    .copy-button {
+      font-size: 0.875rem;
+      color: var(--primary);
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+    }
+
+    .copy-button:hover {
+      background-color: #eff6ff;
+    }
+
+    .payment-status {
+      margin-top: 1rem;
+      padding: 1rem;
+      background-color: #f8fafc;
+      border-radius: var(--border-radius);
+      text-align: center;
+    }
+
+    .spinner {
+      border: 3px solid rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      border-top: 3px solid var(--primary);
+      width: 20px;
+      height: 20px;
+      animation: spin 1s linear infinite;
+      display: inline-block;
+      margin-right: 0.5rem;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .notification {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      padding: 1rem;
+      background-color: white;
+      border-left: 4px solid var(--success);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      transform: translateX(150%);
+      transition: transform 0.3s ease;
+      z-index: 100;
+    }
+
+    .notification.show {
+      transform: translateX(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+        </svg>
+        OkamiDimsum
+      </div>
+    </header>
+
+    <div class="checkout-container">
+      <div class="checkout-details">
+        <div class="card">
+          <h2 class="card-title">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="icon">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+            </svg>
+            Pembayaran QRIS
+          </h2>
+
+          <div class="qris-container">
+            <div class="status-badge">Menunggu Pembayaran</div>
+            <img src="/api/placeholder/240/240" alt="QRIS Code" class="qris-image" />
+            <div class="timer">Bayar dalam <span id="countdown">15:00</span></div>
+            <button class="button outline" id="downloadQrisBtn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              Unduh Kode QRIS
+            </button>
+            <p class="help-text">
+              ID Transaksi: TRX938471209
+              <button class="copy-button" id="copyTrxBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+                Salin
+              </button>
+            </p>
+          </div>
+
+          <ol class="payment-instructions">
+            <li>Buka aplikasi perbankan atau e-wallet yang mendukung QRIS</li>
+            <li>Pilih metode pembayaran QRIS atau scan QR Code</li>
+            <li>Arahkan kamera ke kode QR di atas</li>
+            <li>Periksa detail transaksi dan konfirmasi pembayaran</li>
+            <li>Halaman ini akan otomatis diperbarui setelah pembayaran berhasil</li>
+          </ol>
+
+          <div class="payment-status">
+            <div class="spinner"></div>
+            <span>Menunggu pembayaran...</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="icon">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Metode Pengiriman
+          </h2>
+
+          <div class="form-group">
+            <div class="delivery-options">
+              <div class="delivery-option" data-option="pickup">
+                <div class="delivery-option-title">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="delivery-option-icon">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                  </svg>
+                  Ambil Sendiri
+                </div>
+                <div class="delivery-option-description">
+                  Ambil pesanan Anda langsung di toko kami.
+                  <br>Biaya: Gratis
+                </div>
+              </div>
+
+              <div class="delivery-option" data-option="gojek">
+                <div class="delivery-option-title">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="delivery-option-icon">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                  </svg>
+                  GoSend
+                </div>
+                <div class="delivery-option-description">
+                  Pengiriman instan menggunakan GoSend.
+                  <br>Biaya: Rp18.000
+                </div>
+              </div>
+
+              <div class="delivery-option" data-option="grab">
+                <div class="delivery-option-title">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="delivery-option-icon">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                  GrabExpress
+                </div>
+                <div class="delivery-option-description">
+                  Pengiriman instan menggunakan GrabExpress.
+                  <br>Biaya: Rp20.000
+                </div>
+              </div>
+              
+              <div class="delivery-option" data-option="regular">
+                <div class="delivery-option-title">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="delivery-option-icon">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  Pengiriman Reguler
+                </div>
+                <div class="delivery-option-description">
+                  Estimasi tiba 1-2 hari kerja.
+                  <br>Biaya: Rp15.000
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="button" id="confirmDeliveryBtn">
+            Konfirmasi Metode Pengiriman
+          </button>
+        </div>
+      </div>
+
+      <div class="order-summary">
+        <div class="card">
+          <h2 class="card-title">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="icon">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            </svg>
+            Ringkasan Pesanan
+          </h2>
+
+          <div class="order-items">
+            <div class="order-item">
+              <img src="/api/placeholder/64/64" class="order-item-image" alt="Product 1" />
+              <div class="order-item-info">
+                <div class="order-item-title">Produk 1</div>
+                <div class="order-item-price">Rp150.000 × 1</div>
+              </div>
+            </div>
+            <div class="order-item">
+              <img src="/api/placeholder/64/64" class="order-item-image" alt="Product 2" />
+              <div class="order-item-info">
+                <div class="order-item-title">Produk 2</div>
+                <div class="order-item-price">Rp75.000 × 2</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="order-summary-item">
+            <span>Subtotal</span>
+            <span>Rp300.000</span>
+          </div>
+          <div class="order-summary-item">
+            <span>Biaya Pengiriman</span>
+            <span id="deliveryFee">Rp0</span>
+          </div>
+          <div class="order-summary-item">
+            <span>Diskon</span>
+            <span>-Rp30.000</span>
+          </div>
+          <div class="order-summary-item total">
+            <span>Total</span>
+            <span id="totalPayment">Rp270.000</span>
+          </div>
+
+          <button class="button outline" id="checkStatusBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+            Cek Status Pembayaran
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="notification" id="notification">
+    Berhasil menyalin ID transaksi!
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Delivery options selection
+      const deliveryOptions = document.querySelectorAll('.delivery-option');
+      const deliveryFeeElement = document.getElementById('deliveryFee');
+      const totalPaymentElement = document.getElementById('totalPayment');
+      const confirmDeliveryBtn = document.getElementById('confirmDeliveryBtn');
+      const notification = document.getElementById('notification');
+      
+      let selectedOption = null;
+      let subtotal = 270000; // In cents (Rp270.000)
+      
+      // Payment timer countdown
+      const countdownElement = document.getElementById('countdown');
+      let timeLeft = 15 * 60; // 15 minutes in seconds
+      
+      const countdownTimer = setInterval(function() {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        
+        countdownElement.textContent = ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')};
+        
+        if (timeLeft <= 0) {
+          clearInterval(countdownTimer);
+          countdownElement.textContent = '00:00';
+          countdownElement.parentElement.style.color = 'var(--danger)';
+          countdownElement.parentElement.textContent = 'Waktu pembayaran habis';
+        }
+        
+        timeLeft--;
+      }, 1000);
+      
+      // Handle delivery option selection
+      deliveryOptions.forEach(option => {
+        option.addEventListener('click', function() {
+          // Remove selected class from all options
+          deliveryOptions.forEach(opt => opt.classList.remove('selected'));
+          
+          // Add selected class to clicked option
+          this.classList.add('selected');
+          
+          // Store selected option
+          selectedOption = this.getAttribute('data-option');
+          
+          // Update delivery fee and total based on selection
+          let deliveryFee = 0;
+          switch(selectedOption) {
+            case 'pickup':
+              deliveryFee = 0;
+              break;
+            case 'gojek':
+              deliveryFee = 18000;
+              break;
+            case 'grab':
+              deliveryFee = 20000;
+              break;
+            case 'regular':
+              deliveryFee = 15000;
+              break;
+          }
+          
+          // Update UI
+          deliveryFeeElement.textContent = formatCurrency(deliveryFee);
+          totalPaymentElement.textContent = formatCurrency(subtotal + deliveryFee);
+          
+          // Enable the confirm button
+          confirmDeliveryBtn.disabled = false;
+        });
+      });
+      
+      // Copy transaction ID
+      const copyTrxBtn = document.getElementById('copyTrxBtn');
+      copyTrxBtn.addEventListener('click', function() {
+        const trxId = 'TRX938471209';
+        navigator.clipboard.writeText(trxId).then(function() {
+          showNotification('Berhasil menyalin ID transaksi!');
+        });
+      });
+      
+      // Download QRIS code
+      const downloadQrisBtn = document.getElementById('downloadQrisBtn');
+      downloadQrisBtn.addEventListener('click', function() {
+        showNotification('QRIS code akan diunduh...');
+        // In a real app, this would trigger actual download
+      });
+      
+      // Check payment status
+      const checkStatusBtn = document.getElementById('checkStatusBtn');
+      checkStatusBtn.addEventListener('click', function() {
+        const paymentStatus = document.querySelector('.payment-status');
+        paymentStatus.innerHTML = '<div class="spinner"></div><span>Memeriksa status pembayaran...</span>';
+        
+        // Simulate checking payment (in a real app, this would be an API call)
+        setTimeout(function() {
+          paymentStatus.innerHTML = '<span style="color: var(--success);">✓ Pembayaran sedang diproses!</span>';
+        }, 2000);
+      });
+      
+      // Confirm delivery method
+      confirmDeliveryBtn.addEventListener('click', function() {
+        if (!selectedOption) {
+          showNotification('Silakan pilih metode pengiriman terlebih dahulu!');
+          return;
+        }
+        
+        showNotification('Metode pengiriman telah dipilih!');
+      });
+      
+      // Helper function to format currency
+      function formatCurrency(amount) {
+        return 'Rp' + new Intl.NumberFormat('id-ID').format(amount);
+      }
+      
+      // Show notification
+      function showNotification(message) {
+        notification.textContent = message;
+        notification.classList.add('show');
+        
+        setTimeout(function() {
+          notification.classList.remove('show');
+        }, 3000);
+      }
+    });
+  </script>
+</body>
+</html>

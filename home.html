@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OKAMI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <!--header-->
+    <header id="mainHeader">
+        <div class="nav-left">
+            <a href="home.html" class="nav-link active">Home</a>
+            <a href="menu.html" class="nav-link">Menu</a>
+        </div>
+
+        <div class="profile-container">
+            <img src="logo.jpg" alt="Profile" class="profile-img">
+        </div>
+
+        <div class="nav-right">
+            <a href="profile.html" class="nav-link">Profile</a>
+            <a href="location.html" class="nav-link">Location</a>
+            <button class="login-btn" id="loginBtn">Login</button>
+        </div>
+    </header><br><br>
+
+    <!-- Login -->
+    <div class="auth-modal" id="authModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Login</h2>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            
+            <!-- Login Form -->
+            <form class="auth-form" id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="submit-btn">Sign In</button>
+                <div class="form-switch">
+                    Don't have an account? 
+                    <button type="button" class="form-switch-btn" id="switchToSignup">Sign Up</button>
+                </div>
+            </form>
+            
+            <!-- Signup Form -->
+            <form class="auth-form" id="signupForm" style="display: none;">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" placeholder="Create a password" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupConfirm">Confirm Password</label>
+                    <input type="password" id="signupConfirm" placeholder="Confirm your password" required>
+                </div>
+                <button type="submit" class="submit-btn">Sign Up</button>
+                <div class="form-switch">
+                    Already have an account? 
+                    <button type="button" class="form-switch-btn" id="switchToLogin">Sign In</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!--yang muter-->
+    <div class="text-container">
+        <div class="okami-text">OKAMI</div>
+        <div class="image-overlay rotating">
+            <img id="rotatingImage" class="rotating-image" src="tengah.png" alt="Rotating Image">
+        </div>
+    </div>
+
+    <!--button bawah gambar-->
+    <div class="controls">
+        <button class="arrow-btn" id="prevBtn">&#10094;</button>
+        <button class="arrow-btn" id="nextBtn">&#10095;</button>
+    </div><br><br>
+
+    <!--bestseller-->
+    <div class="gallery-container">
+        <div class="image-card">
+            <img src="original2.jpg" alt="Gambar 1">
+            <div class="image-overlay">
+                <h3 class="image-title">Dimsum Original</h3>
+                <p class="image-desc">rasanya gurih, lezat, dan lembut dengan isian daging berbumbu ringan.</p>
+            </div>
+        </div>
+        
+        <div class="image-card">
+            <img src="mentai.jpg" alt="Gambar 2">
+            <div class="image-overlay">
+                <h3 class="image-title">dimsum Mentai</h3>
+                <p class="image-desc">Rasanya gurih, creamy, dan sedikit pedas.</p>
+            </div>
+        </div>
+        
+        <div class="image-card">
+            <img src="nori.jpg" alt="Gambar 3">
+            <div class="image-overlay">
+                <h3 class="image-title">Dimsum Nori</h3>
+                <p class="image-desc">rasanya gurih dan sedikit asin.</p>
+            </div>
+        </div>
+        
+        <div class="image-card">
+            <img src="Lumpia.jpg" alt="Gambar 4">
+            <div class="image-overlay">
+                <h3 class="image-title">Dimsum Lumpia</h3>
+                <p class="image-desc">Rasanya renyah diluar gurih didalam.</p>
+            </div>
+        </div>
+    </div><br><br>
+
+    <!--running text-->
+    <div class="marquee-container">
+        <div class="marquee left-to-right" id="marquee1">
+            <div class="marquee-text"> dimsum mentai - dimsum mentai - dimsum mentai -</div>
+        </div>
+    </div>
+    
+    <div class="marquee-container">
+        <div class="marquee right-to-left" id="marquee2">
+            <div class="marquee-text"> dimsum nori - dimsum nori - dimsum nori -</div>
+        </div>
+    </div>
+    
+    <div class="marquee-container">
+        <div class="marquee left-to-right" id="marquee3">
+            <div class="marquee-text"> dimsum tar tar - dimsum tar tar - dimsum tar tar -</div>
+        </div>
+    </div><br><br>
+
+    <!-- Photocard -->
+    <div class="photocard" id="photocard">
+        <img src="tengah.png" alt="Special Offer" />
+        <div class="photocard-content">
+            <h3>Today's Special</h3>
+            <p>Dimsum IMUT</p>
+        </div>
+    </div>
+    
+    <!--footer-->
+    <footer class="okami-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <img src="logo.jpg" alt="Okami Dimsum Logo" class="footer-logo">
+                <p class="footer-slogan">Rasa Autentik, Kenikmatan Tanpa Batas</p>
+            </div>
+            
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">Pesan Sekarang</h3>
+                    <div class="delivery-apps">
+                        <a href="#" class="delivery-app">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Gojek_Logo.svg/2560px-Gojek_Logo.svg.png" alt="Gojek">
+                        </a>
+                        <a href="#" class="delivery-app">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Grab_logo_2016.svg/2560px-Grab_logo_2016.svg.png" alt="Grab">
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">Hubungi Kami</h3>
+                    <a href="tel:+6289630443917" class="contact-link">
+                        <i class="fas fa-phone-alt"></i> +62 896-3044-3917
+                    </a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">Ikuti Kami</h3>
+                    <div class="social-media">
+                        <a href="https://www.instagram.com/okami.dimsum?igsh=MWU1OHp2ZDkzdTRzMg==" class="social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@okamidimsum?_t=ZS-8w1XEMwADQ1&_r=1" class="social-icon">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2023 Okami Dimsum. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="okami.js"></script>
+</body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Restoran</title>
+    <link rel="stylesheet" href="menu.css">
+</head>
+<body>
+    <header id="mainHeader">
+        <div class="nav-left">
+            <a href="home.html" class="nav-link">Home</a>
+            <a href="menu.html" class="nav-link active">Menu</a>
+        </div>
+
+        <div class="profile-container">
+            <img src="logo.jpg" alt="Profile" class="profile-img">
+        </div>
+
+
+        <div class="nav-right">
+            <a href="profile.html" class="nav-link">Profile</a>
+            <a href="location.html" class="nav-link">Location</a>
+            <div class="cart-icon-container" id="cartIcon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </div>
+            <button class="login-btn" id="loginBtn">Login</button>
+        </div>
+        
+    </header><br><br>
+
+    <!-- Login -->
+    <div class="auth-modal" id="authModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Login</h2>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            
+            <!-- Login Form -->
+            <form class="auth-form" id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="submit-btn">Sign In</button>
+                <div class="form-switch">
+                    Don't have an account? 
+                    <button type="button" class="form-switch-btn" id="switchToSignup">Sign Up</button>
+                </div>
+            </form>
+            
+            <!-- Signup Form -->
+            <form class="auth-form" id="signupForm" style="display: none;">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" placeholder="Create a password" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupConfirm">Confirm Password</label>
+                    <input type="password" id="signupConfirm" placeholder="Confirm your password" required>
+                </div>
+                <button type="submit" class="submit-btn">Sign Up</button>
+                <div class="form-switch">
+                    Already have an account? 
+                    <button type="button" class="form-switch-btn" id="switchToLogin">Sign In</button>
+                </div>
+            </form>
+        </div>
+    </div><br>
+    <!-- Bagian Rotating Objects -->
+    <div class="rotating-container">
+        <div class="rotating-item">
+            <img src="tengah.png" alt="mentai">
+        </div>
+        <div class="rotating-item">
+            <img src="tengah.png" alt="Nori">
+        </div>
+        <div class="rotating-item">
+            <img src="tengah.png" alt="Original">
+        </div>
+    </div>
+
+    <!-- Bagian Paket -->
+    <div class="container">
+        <h2 class="section-title">PAKET HEMAT</h2>
+        <div class="packages-container">
+            <div class="package-item">
+                <h3 class="package-name">Pahe 1</h3>
+                <div class="package-price">Rp 15.000</div>
+                <p class="package-desc">Original 2, Nori, Lumpia, Es teh</p>
+                <button class="package-btn">Pesan Sekarang</button>
+            </div>
+            <div class="package-item">
+                <h3 class="package-name">Pahe 2</h3>
+                <div class="package-price">Rp 16.000</div>
+                <p class="package-desc">Original, Nori, Lumpia, Mawut, Es teh</p>
+                <button class="package-btn">Pesan Sekarang</button>
+            </div>
+            <div class="package-item">
+                <h3 class="package-name">Pahe 3</h3>
+                <div class="package-price">Rp 16.000</div>
+                <p class="package-desc">Nori, Lumpia, Ekado, Udang, Es teh</p>
+                <button class="package-btn">Pesan Sekarang</button>
+            </div>
+            <div class="package-item">
+                <h3 class="package-name">Pahe 4</h3>
+                <div class="package-price">Rp 15.000</div>
+                <p class="package-desc">Original, Hot, Nori, Mawut, Es teh</p>
+                <button class="package-btn">Pesan Sekarang</button>
+            </div>
+            <div class="package-item">
+                <h3 class="package-name">Pahe 5</h3>
+                <div class="package-price">Rp 28.000</div>
+                <p class="package-desc">Original, Nori, Mawut, Lumpia, Cumi, Ekado, Hot, Lemon tea/ all variant</p>
+                <button class="package-btn">Pesan Sekarang</button>
+            </div>
+        </div>
+
+        <div class="container">
+            <h2 class="section-title">PAKET MIX</h2>
+            <div class="packages-container">
+                <div class="package-item">
+                    <h3 class="package-name">MIX 1</h3>
+                    <div class="package-price">Rp 13.000</div>
+                    <p class="package-desc">Original 2, Nori, Lumpia</p>
+                    <button class="package-btn">Pesan Sekarang</button>
+                </div>
+                <div class="package-item">
+                    <h3 class="package-name">MIX 2</h3>
+                    <div class="package-price">Rp 13.000</div>
+                    <p class="package-desc">Original, Hot, Nori, Lumpia</p>
+                    <button class="package-btn">Pesan Sekarang</button>
+                </div>
+                <div class="package-item">
+                    <h3 class="package-name">MIX 3</h3>
+                    <div class="package-price">Rp 13.000</div>
+                    <p class="package-desc">Orginal, Hot, Nori, Cumi</p>
+                    <button class="package-btn">Pesan Sekarang</button>
+                </div>
+                <div class="package-item">
+                    <h3 class="package-name">MIX 4</h3>
+                    <div class="package-price">Rp 13.000</div>
+                    <p class="package-desc">Original, Hot, Mawut, Lumpia</p>
+                    <button class="package-btn">Pesan Sekarang</button>
+                </div>
+            </div>
+
+        <!-- Bagian Makanan -->
+        <h2 class="section-title">MENU MAKANAN</h2>
+        <div class="food-container">
+            <div class="food-item">
+                <img src="original.jpg" alt="Nasi Goreng Spesial" class="food-img">
+                <div class="food-badge">BEST SELLER</div>
+                <div class="food-info">
+                    <h3 class="food-name">Dimsum Original</h3>
+                    <div class="food-price">Rp 13.000</div>
+                    <button class="package-btn">Pesan Sekarang</button>
+                </div>
+            </div>
+            <div class="food-item">
+                <img src="mentai.jpg" alt="mentai" class="food-img">
+                <div class="food-badge">BEST SELLER</div>
+                <div class="food-info">
+                    <h3 class="food-name">Dimsum Mentai</h3>
+                    <div class="food-price">Rp 18.000</div>
+                    <button class="package-btn">Pesan Sekarang</button>
+                </div>
+            </div>
+            <div class="food-item">
+                <img src="nori.jpg" alt="nori" class="food-img">
+                <div class="food-badge">YUMMY</div>
+                <div class="food-info">
+                    <h3 class="food-name">Dimsum Nori</h3>
+                    <div class="food-price">Rp 13.000</div>
+                    <button class="package-btn">Pesan Sekarang</button>
+                </div>
+            </div>
+            <div class="food-item">
+                <img src="hott.jpg" alt="hot" class="food-img">
+                <div class="food-badge">SPICY</div>
+                <div class="food-info">
+                    <h3 class="food-name">  Dimsum Hot</h3>
+                    <div class="food-price">Rp 13.000</div>
+                    <button class="package-btn">Pesan Sekarang</button>
+                </div>
+            </div>
+            <div class="food-item">
+                <img src="Lumpia.jpg" alt="lumpia" class="food-img">
+                <div class="food-badge">YUMMY</div>
+                <div class="food-info">
+                    <h3 class="food-name">Lumpia</h3>
+                    <div class="food-price">Rp 13.000</div>
+                    <button class="package-btn">Pesan Sekarang</button>
+                </div>
+            </div>
+            <div class="food-item">
+                <img src="mawut.jpg" alt="mawut" class="food-img">
+                <div class="food-badge">YUMMY</div>
+                <div class="food-info">
+                    <h3 class="food-name">Mawut</h3>
+                    <div class="food-price">Rp 13.000</div>
+                    <button class="package-btn">Pesan Sekarang</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bagian Minuman -->
+        <h2 class="section-title">MENU MINUMAN</h2>
+        <div class="drinks-container">
+            <div class="drink-item">
+                <div class="drink-img-container">
+                    <img src="ice tea.jpeg" alt="Es Teh" class="drink-img">
+                </div>
+                <h3 class="drink-name">Ice tea</h3>
+                <div class="drink-price">Rp 5.000</div>
+                <button class="package-btn">Pesan Sekarang</button>
+            </div>
+            <div class="drink-item">
+                <div class="drink-img-container">
+                    <img src="ice tea.jpeg" alt="Jus Alpukat" class="drink-img">
+                </div>
+                <h3 class="drink-name">Lemon tea</h3>
+                <div class="drink-price">Rp 5.000</div>
+                <button class="package-btn">Pesan Sekarang</button>
+            </div>
+            <div class="drink-item">
+                <div class="drink-img-container">
+                    <img src="ice tea.jpeg" alt="Lemon Tea" class="drink-img">
+                </div>
+                <h3 class="drink-name">Peach tea</h3>
+                <div class="drink-price">Rp 5.000</div>
+                <button class="package-btn">Pesan Sekarang</button>
+            </div>
+            <div class="drink-item">
+                <div class="drink-img-container">
+                    <img src="ice tea.jpeg" alt="Kopi" class="drink-img">
+                </div>
+                <h3 class="drink-name">Lychee tea</h3>
+                <div class="drink-price">Rp 5.000</div>
+                <button class="package-btn">Pesan Sekarang</button>
+            </div>
+            <div class="drink-item">
+                <div class="drink-img-container">
+                    <img src="ice tea.jpeg" alt="Milkshake" class="drink-img">
+                </div>
+                <h3 class="drink-name">Mango tea</h3>
+                <div class="drink-price">Rp 5.000</div>
+                <button class="package-btn">Pesan Sekarang</button>
+            </div>
+            <div class="drink-item">
+                <div class="drink-img-container">
+                    <img src="ice tea.jpeg" alt="Es Jeruk" class="drink-img">
+                    <button class="package-btn">Pesan Sekarang</button>
+                </div>
+                <h3 class="drink-name">Apple tea</h3>
+                <div class="drink-price">Rp 5.000</div>
+                <button class="package-btn">Pesan Sekarang</button>
+            </div>
+        </div>
+
+        <div class="cart-modal" id="cartModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Keranjang Belanja</h2>
+                    <button class="close-modal" id="closeCartModal">&times;</button>
+                </div>
+                <div class="cart-items" id="cartItems">
+                    <!-- Item keranjang akan ditambahkan secara dinamis -->
+                    <div class="empty-cart">Keranjang belanja kosong</div>
+                </div>
+                <div class="cart-summary">
+                    <div class="total-price">
+                        <span>Total:</span>
+                        <span id="cartTotal">Rp 0</span>
+                    </div>
+                    <button class="checkout-btn" id="checkoutBtn">Proses Pembayaran</button>
+                </div>
+            </div>
+        </div>
+
+        <footer class="okami-footer">
+            <div class="footer-container">
+                <div class="footer-brand">
+                    <img src="logo.jpg" alt="Okami Dimsum Logo" class="footer-logo">
+                    <p class="footer-slogan">Rasa Autentik, Kenikmatan Tanpa Batas</p>
+                </div>
+                
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <div class="delivery-apps">
+                            <a href="#" class="delivery-app">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Gojek_Logo.svg/2560px-Gojek_Logo.svg.png" alt="Gojek">
+                            </a>
+                            <a href="#" class="delivery-app">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Grab_logo_2016.svg/2560px-Grab_logo_2016.svg.png" alt="Grab">
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3 class="footer-title">Hubungi Kami</h3>
+                        <a href="tel:+6289630443917" class="contact-link">
+                            <i class="fas fa-phone-alt"></i> +62 896-3044-3917
+                        </a>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3 class="footer-title">Ikuti Kami</h3>
+                        <div class="social-media">
+                            <a href="https://www.instagram.com/okami.dimsum?igsh=MWU1OHp2ZDkzdTRzMg==" class="social-icon">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://www.tiktok.com/@okamidimsum?_t=ZS-8w1XEMwADQ1&_r=1" class="social-icon">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Okami Dimsum. All Rights Reserved.</p>
+            </div>
+        </footer>
+
+    </div>
+
+
+
+
+<script src="menu.js"></script>
